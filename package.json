@@ -1,0 +1,17 @@
+{
+  "name": "mongo_node_express",
+  "version": "1.0.0",
+  "description": "HW5: Guess the Celebrity App (backend)",
+  "main": "server.js",
+  "scripts": {
+    "test": "jest --coverage",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "express": "^4.17.1"
+  }
+}
