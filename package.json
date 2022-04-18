@@ -5,7 +5,10 @@
   "main": "server.js",
   "scripts": {
     "test": "jest --coverage",
-    "start": "react-scripts start"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "eject": "react-scripts eject",
+    "lint": "eslint \"./**/*.js\""
   },
   "keywords": [],
   "author": "",
