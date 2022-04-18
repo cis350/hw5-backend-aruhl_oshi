@@ -1,0 +1,98 @@
+[{
+    "img": "https://www.asc.upenn.edu/sites/default/files/styles/360x360/public/2021-02/Amy%20Gutmann%20new%20in%202021%20_%20360.jpg?h=5273c5c2&itok=N3c7az06",
+    "option1": "Amy Gutmann",
+    "option2": "Ellen Degeneres",
+    "option3": "Megan Fox",
+    "option4": "Your mom",
+    "correct": "option1"
+},
+{
+    "img": "https://upload.wikimedia.org/wikipedia/commons/c/cf/LeBron_James_crop.jpg",
+    "option1": "Kobe Bryant",
+    "option2": "Michael Jordan",
+    "option3": "Lebron James",
+    "option4": "Luka Doncic",
+    "correct": "option3"
+},
+{
+    "img": "https://a.espncdn.com/photo/2018/0917/r432464_1600x800cc.jpg",
+    "option1": "Sensai",
+    "option2": "Ninja",
+    "option3": "John",
+    "option4": "Samurai",
+    "correct": "option2"
+},
+{
+    "img": "https://townsquare.media/site/812/files/2021/02/future1.jpg?w=1200",
+    "option1": "Kanye",
+    "option2": "50 Cent",
+    "option3": "Eminem",
+    "option4": "Future",
+    "correct": "option4"
+},
+{
+    "img": "https://static.independent.co.uk/s3fs-public/thumbnails/image/2020/07/01/12/shutterstock-editorial-5886247bz.jpg?width=1200",
+    "option1": "Margot Robbie",
+    "option2": "Emma Watson",
+    "option3": "Jennifer Lawrence",
+    "option4": "Rihanna",
+    "correct": "option1"
+},
+{
+    "img": "https://upload.wikimedia.org/wikipedia/commons/4/48/David_Solomon.jpg",
+    "option1": "Jamie Dimon",
+    "option2": "David Solomon",
+    "option3": "Frank Quattrone",
+    "option4": "Jason Kidd",
+    "correct": "option2"
+},
+{
+    "img": "https://upload.wikimedia.org/wikipedia/commons/9/9f/Ceedee_Lamb_2021_%28cropped%29.jpg",
+    "option1": "Ezekiel Elliott",
+    "option2": "DK Metcalf",
+    "option3": "Ceedee Lamb",
+    "option4": "Dak Prescott",
+    "correct": "option3"
+},
+{
+    "img": "https://ichef.bbci.co.uk/news/466/mcs/media/images/65558000/jpg/_65558865_153100389.jpg",
+    "option1": "Meek Mill",
+    "option2": "Travis Scott",
+    "option3": "DJ Khaled",
+    "option4": "Rick Ross",
+    "correct": "option4"
+},
+{
+    "img": "https://pagesix.com/wp-content/uploads/sites/3/2021/11/dave-portnoy251_.jpg?quality=80&strip=all&w=618&h=410&crop=1",
+    "option1": "Dave Portnoy",
+    "option2": "Joe Rogan",
+    "option3": "Ben Shapiro",
+    "option4": "David Beckham",
+    "correct": "option1"
+},
+{
+    "img": "https://static.wikia.nocookie.net/prowrestling/images/a/ad/Wwe_the_rock_png_by_double_a1698_day9ylt-pre_%281%29.png/revision/latest?cb=20190225014047",
+    "option1": "The Boulder",
+    "option2": "The Rock",
+    "option3": "The Pebble",
+    "option4": "The Stone",
+    "correct": "option2"
+},
+{
+    "img": "https://upload.wikimedia.org/wikipedia/commons/3/34/Elon_Musk_Royal_Society_%28crop2%29.jpg",
+    "option1": "Jeff Bezos",
+    "option2": "Bill Gates",
+    "option3": "Elon Musk",
+    "option4": "Larry Page",
+    "correct": "option3"
+},
+{
+    "img": "https://upload.wikimedia.org/wikipedia/commons/2/29/Houghton_STC_22790_-_Generall_Historie_of_Virginia%2C_New_England%2C_and_the_Summer_Isles%2C_John_Smith.jpg",
+    "option1": "George Washington",
+    "option2": "Jared Thompson",
+    "option3": "Andrew Jackson",
+    "option4": "John Smith",
+    "correct": "option4"
+}
+
+]

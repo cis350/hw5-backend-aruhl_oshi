@@ -1,0 +1,197 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.box {
+  background-color:rgb(225, 225, 225);
+  width:30%;
+  display:inline-block;
+  margin:0% 1%;
+  border: 1px solid black;
+  border-radius:1px;
+  border-color: black;
+  background: rgba(196, 196, 196, 0.5);
+  box-sizing: border-box;
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
+}
+
+.box2 {
+  background-color:rgb(225, 225, 225);
+  width:30%;
+  display:inline-block;
+  margin:1%;
+  border: 1px solid black;
+  border-radius:1px;
+  border-color: black;
+  background: rgba(196, 196, 196, 0.5);
+  box-sizing: border-box;
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
+}
+
+.leaderboardend {
+  position: absolute;
+  height: 111px;
+  left: 281px;
+  right: 281px;
+  top: 110px;
+  margin: 20px;;
+
+
+  font-size: 30px;
+  line-height: 41px;
+  /* or 33% */
+
+  text-align: center;
+  letter-spacing: 0.374px;
+
+  color: #4B3187;
+}
+
+.whoisthisceleb {
+  margin: 1%;
+
+  font-size: 60px;
+  line-height: 22px;
+  /* or 22% */
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: -0.408px;
+
+  color: #000000;
+}
+
+.text {
+  padding:11px 0;
+  color:black;
+  font-weight:bold;
+  text-align:center;
+}
+
+.image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 500px;
+}
+
+.buttons {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: "center";
+  align-items: "center";
+}
+  
+.action_button {
+  background-color: rgb(52, 120, 246);
+  color: white;
+  font-size: large;
+  margin: 5px 20px;
+  display: inline;
+  border: 1px solid black;
+  width: 50%;
+  height: 80px;
+}
+
+.container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container .checkmark:after {
+ 	top: 9px;
+	left: 9px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: white;
+}
+
+.Login {
+  padding: 60px 0;
+}
+
+.Login form {
+  margin: 0 auto;
+  max-width: 320px;
+}
+
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

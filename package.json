@@ -5,15 +5,31 @@
   "main": "server.js",
   "scripts": {
     "test": "jest --coverage",
-    "start": "node server.js"
+    "start": "react-scripts start"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "mongodb": "^4.5.0"
+    "mongodb": "^4.5.0",
+    "react-bootstrap": "^2.2.3",
+    "react-router-dom": "^6.3.0",
+    "web-vitals": "^2.1.4"
   },
   "devDependencies": {
+    "eslint": "^8.13.0",
     "express": "^4.17.1"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
