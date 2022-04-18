@@ -1,7 +1,4 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable react/destructuring-assignment */
-/* eslint-disable react/no-unused-state */
-/* eslint-disable react/prop-types */
+
 import React, { useState } from 'react';
 // import PropTypes from 'prop-types';
 import './App.css';
