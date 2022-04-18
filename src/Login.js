@@ -1,6 +1,8 @@
+/* eslint-disable react/jsx-filename-extension */
 /* eslint-disable class-methods-use-this */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/destructuring-assignment */
+// eslint-disable-next-line import/no-extraneous-dependencies
 import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';

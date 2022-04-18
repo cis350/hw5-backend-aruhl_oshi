@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-filename-extension */
+// eslint-disable-next-line import/no-extraneous-dependencies
 import React from 'react';
 import './App.css';
 // import Leaderboard from './Leaderboard';

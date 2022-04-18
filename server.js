@@ -1,12 +1,14 @@
+/* eslint-disable import/no-extraneous-dependencies */
 // Create express app
 const express = require('express');
+
 const webapp = express();
 
 webapp.use(express.json());
 webapp.use(
   express.urlencoded({
     extended: true,
-  })
+  }),
 );
 
 // Root endpoint

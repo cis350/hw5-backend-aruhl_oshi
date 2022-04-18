@@ -1,4 +1,6 @@
+/* eslint-disable react/jsx-filename-extension */
 /* eslint-disable react/destructuring-assignment */
+// eslint-disable-next-line import/no-extraneous-dependencies
 import React, { useEffect, useState } from 'react';
 // import PropTypes from 'prop-types';
 import './App.css';
@@ -31,11 +33,14 @@ function Leaderboard() {
       <div className="text">
         Leaderboard
       </div>
-        <div><ol>
+      <div>
+        <ol>
           {leaders.map((leader) => (
             <li key={leader.key}>{leader.value}</li>
-         ))}
-        </ol></div>
+          ))}
+        </ol>
+
+      </div>
     </div>
   );
 }
