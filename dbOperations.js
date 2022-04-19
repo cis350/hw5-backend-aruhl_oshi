@@ -30,7 +30,21 @@ const addPlayer = async (db, newPlayer) => {
   }
 };
 
-module.exports = { connect, addPlayer };
+//4. get all players
+async function getPlayers(db){
+    try{
+        // retrieve all the players in the collection and convert the cursor
+        // to an array
+        const results = await db.collection('Players').find({}).toArray();
+        return results;
+    }catch(err){
+        console.error(err);
+        throw new Error('could not retrieve players');
+    }
+
+}
+
+module.exports = { connect, addPlayer, getPlayers };
 
 connect('mongodb+srv://cis350HW5:cis350HW5@cluster0.b0nwj.mongodb.net/Test_Data?retryWrites=true&w=majority');
 // this is the URL from the database
