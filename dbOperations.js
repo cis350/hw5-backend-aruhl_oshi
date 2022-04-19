@@ -30,18 +30,17 @@ const addPlayer = async (db, newPlayer) => {
   }
 };
 
-//4. get all players
-async function getPlayers(db){
-    try{
-        // retrieve all the players in the collection and convert the cursor
-        // to an array
-        const results = await db.collection('Players').find({}).toArray();
-        return results;
-    }catch(err){
-        console.error(err);
-        throw new Error('could not retrieve players');
-    }
-
+// 4. get all players
+async function getPlayers(db) {
+  try {
+    // retrieve all the players in the collection and convert the cursor
+    // to an array
+    const results = await db.collection('Players').find({}).toArray();
+    return results;
+  } catch (err) {
+    console.error(err);
+    throw new Error('could not retrieve players');
+  }
 }
 
 module.exports = { connect, addPlayer, getPlayers };
