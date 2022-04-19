@@ -2,7 +2,7 @@
   "name": "mongo_node_express",
   "version": "1.0.0",
   "description": "HW5: Guess the Celebrity App (backend)",
-  "main": "server.js",
+  "main": "dbOperations.js",
   "scripts": {
     "test": "jest --coverage",
     "start": "react-scripts start",
