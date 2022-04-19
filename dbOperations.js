@@ -43,7 +43,35 @@ async function getPlayers(db) {
   }
 }
 
-module.exports = { connect, addPlayer, getPlayers };
+// 4. get all players
+async function getPlayer(db, name) {
+  try {
+    // retrieve all the players in the collection and convert the cursor
+    // to an array
+    const results = await db.collection('Players').find({ player: { name } });
+    return results;
+  } catch (err) {
+    console.error(err);
+    throw new Error('could not retrieve players');
+  }
+}
+
+// Get questions
+async function getQuestions(db) {
+  try {
+    // retrieve all the players in the collection and convert the cursor
+    // to an array
+    const results = await db.collection('Questions').find({}).toArray();
+    return results;
+  } catch (err) {
+    console.error(err);
+    throw new Error('could not retrieve questions');
+  }
+}
+
+module.exports = {
+  connect, addPlayer, getPlayers, getPlayer, getQuestions,
+};
 
 connect('mongodb+srv://cis350HW5:cis350HW5@cluster0.b0nwj.mongodb.net/Test_Data?retryWrites=true&w=majority');
 // this is the URL from the database
