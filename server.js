@@ -8,6 +8,7 @@ const webapp = express();
 const lib = require('./dbOperations');
 
 let db;
+const url = 'mongodb+srv://cis350HW5:cis350HW5@cluster0.b0nwj.mongodb.net/Test_Data?retryWrites=true&w=majority';
 
 webapp.use(express.json());
 webapp.use(
@@ -25,14 +26,16 @@ webapp.get('/', (req, res) => {
 
 webapp.post('/login', async (req, resp) => {
   // check the name was provided
-  if (!req.body.name || req.body.name.length === 0) {
+  console.log(req.body);
+  if (!req.body.player || req.body.player.length === 0) {
     resp.status(404).json({ error: 'username not provided' });
     return;
   }
   try {
-    const result = await lib.addPlayer(db, { name: req.body.name, points: 3 });
+    const result = await lib.addPlayer(db, { player: req.body.player, points: 3 });
     // send the response
     resp.status(201).json({ message: `Player with id ${JSON.stringify(result.insertedId)} added` });
+    console.log('player insereted');
   } catch (err) {
     resp.status(500).json({ error: 'try again later' });
   }
@@ -45,11 +48,13 @@ webapp.use((_req, res) => {
 
 // Start server
 const port = process.env.PORT || 5005;
-webapp.listen(port, () => {
+webapp.listen(port, async () => {
   try {
-    // db = await lib.connect(url);
-    // console.log(`Express server running on port:${port}`);
+    db = await lib.connect(url);
+    console.log(`Express server running on port:${port}`);
   } catch (err) {
     throw new Error('cannot start server');
   }
 });
+
+module.exports = webapp;
