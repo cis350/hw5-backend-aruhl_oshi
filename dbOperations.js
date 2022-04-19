@@ -30,7 +30,18 @@ const addPlayer = async (db, newPlayer) => {
   }
 };
 
+module.exports = { connect, addPlayer };
+
 connect('mongodb+srv://cis350HW5:cis350HW5@cluster0.b0nwj.mongodb.net/Test_Data?retryWrites=true&w=majority');
 // this is the URL from the database
 // cis350HW5 = password
 // Test_Data is database name
+/*
+const main = async () => {
+  const db = await connect('mongodb+srv://cis350HW5:cis350HW5@cluster0.b0nwj.mongodb.net/Test_Data?retryWrites=true&w=majority');
+  // await addPlayer(db, {name: 'Chris', points: 0});
+  await addPlayer(db, { name: 'Lena', points: 1 });
+};
+
+main();
+*/

@@ -4,6 +4,11 @@ const express = require('express');
 
 const webapp = express();
 
+// import database functions
+const lib = require('./dbOperations');
+
+let db;
+
 webapp.use(express.json());
 webapp.use(
   express.urlencoded({
@@ -18,6 +23,21 @@ webapp.get('/', (req, res) => {
 
 // TODO: define all endpoints as specified in REST API
 
+webapp.post('/login', async (req, resp) => {
+  // check the name was provided
+  if (!req.body.name || req.body.name.length === 0) {
+    resp.status(404).json({ error: 'username not provided' });
+    return;
+  }
+  try {
+    const result = await lib.addPlayer(db, { name: req.body.name, points: 3 });
+    // send the response
+    resp.status(201).json({ message: `Player with id ${JSON.stringify(result.insertedId)} added` });
+  } catch (err) {
+    resp.status(500).json({ error: 'try again later' });
+  }
+});
+
 // Default response for any other request
 webapp.use((_req, res) => {
   res.status(404);
@@ -26,5 +46,10 @@ webapp.use((_req, res) => {
 // Start server
 const port = process.env.PORT || 5005;
 webapp.listen(port, () => {
-  console.log(`Server running on port:${port}`);
+  try {
+    // db = await lib.connect(url);
+    // console.log(`Express server running on port:${port}`);
+  } catch (err) {
+    throw new Error('cannot start server');
+  }
 });
