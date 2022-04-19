@@ -48,11 +48,11 @@ async function getPlayer(db, name) {
   try {
     // retrieve all the players in the collection and convert the cursor
     // to an array
-    const results = await db.collection('Players').find({ player: { name } });
+    const results = await db.collection('Players').findOne({ player: { name } });
     return results;
   } catch (err) {
     console.error(err);
-    throw new Error('could not retrieve players');
+    throw new Error('could not find player');
   }
 }
 
@@ -69,8 +69,49 @@ async function getQuestions(db) {
   }
 }
 
+// delete player
+async function deletePlayer(db, name) {
+  try {
+    // retrieve all the players in the collection and convert the cursor
+    // to an array
+    const results = await db.collection('Player').findOneAndDelete({ player: { name } });
+    return results;
+  } catch (err) {
+    console.error(err);
+    throw new Error('could not delete player');
+  }
+}
+
+// delete player
+async function getLeaders(db, n) {
+  try {
+    // retrieve all the players in the collection and convert the cursor
+    // to an array
+    const results = await db.collection('Players').find({}).toArray();
+    console.log(results);
+    return results;
+  } catch (err) {
+    console.error(err);
+    throw new Error('could not delete player');
+  }
+}
+
+// update palyer score
+async function updatePlayer(db, n) {
+  try {
+    // retrieve all the players in the collection and convert the cursor
+    // to an array
+    const results = await db.collection('Players').find({}).toArray();
+    console.log(results);
+    return results;
+  } catch (err) {
+    console.error(err);
+    throw new Error('could not delete player');
+  }
+}
+
 module.exports = {
-  connect, addPlayer, getPlayers, getPlayer, getQuestions,
+  connect, addPlayer, getPlayers, getPlayer, getQuestions, deletePlayer, getLeaders,
 };
 
 connect('mongodb+srv://cis350HW5:cis350HW5@cluster0.b0nwj.mongodb.net/Test_Data?retryWrites=true&w=majority');
