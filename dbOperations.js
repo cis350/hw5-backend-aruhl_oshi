@@ -84,9 +84,9 @@ async function getLeaders(db, n) {
     // retrieve all the players in the collection and convert the cursor
     // to an array
     const arr = await db.collection('Players').find({}).toArray();
-    arr.sort(function(a, b){return b.points-a.points});
+    arr.sort((a, b) => b.points - a.points);
     console.log(arr);
-    const nleaders = arr.slice(0, n)
+    const nleaders = arr.slice(0, n);
     return nleaders;
   } catch (err) {
     console.error(err);
