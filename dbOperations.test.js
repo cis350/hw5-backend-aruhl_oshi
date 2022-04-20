@@ -113,4 +113,7 @@ test('getLeaders retrieves all the players a new player', async () =>{
     const nleaders = arr.slice(0, 3)
     //test that users matches  usersDB
     expect(users).toEqual(nleaders);
+    await dbModule.deletePlayer(db, 'player1');
+    await dbModule.deletePlayer(db, 'player2');
+    await dbModule.deletePlayer(db, 'player3');
 });
