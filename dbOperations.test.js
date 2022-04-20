@@ -54,7 +54,10 @@ test('getQuestions returns the correct questions', async () =>{
 });
 
 test('getPlayer returns the correct player', async () =>{
+    await dbModule.addPlayer(db, {name: 'oliver', points: 3});
     const receivedUser = await dbModule.getPlayer(db, 'oliver');
+    console.log('db operations get player test');
+    console.log(receivedUser);
     const userDB = await db.collection('Players').findOne({ player: 'oliver' });
     //test that users matches  usersDB
     expect(receivedUser).toEqual(userDB);
@@ -83,6 +86,7 @@ test('updatePlayer updates the correct player', async () =>{
     const userDB = await db.collection('Players').findOne({ player: 'Update' });
     console.log(userDB);
     expect(userDB.points).toEqual(10);
+    
 
     await dbModule.deletePlayer(db, 'Update');
 });
