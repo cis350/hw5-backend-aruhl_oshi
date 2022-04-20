@@ -22,6 +22,12 @@ const player = {
     points: 6,
 };
 
+const playerToDelete = {
+    player: 'Delete2',
+    points: 4,
+};
+
+
 describe('/login endpoint tests',  ()=> {
     test('/login endpoint status code and response 404', ()=>{
         //construct a supertest request with our app
@@ -40,11 +46,50 @@ describe('/login endpoint tests',  ()=> {
     }); 
 });
 
-describe('/quiz endpoint tests',  ()=> {
+describe('/leaders endpoint tests',  ()=> {
      test('status code 200 and response', () =>{
-        return request(webapp).get('/quiz/')
+        return request(webapp).get('/leaders/')
         .expect(200) // test the response status code
          // process the response
-        .then((response)=> expect(JSON.parse(response.text).message).toContain('Margot Robbie'));
+        .then((response)=> expect(JSON.parse(response.text).message).toContain('alex'));
     }); 
 });
+
+describe('/quiz endpoint tests',  ()=> {
+    test('status code 200 and response', () =>{
+       return request(webapp).get('/quiz/')
+       .expect(200) // test the response status code
+        // process the response
+       .then((response)=> expect(JSON.parse(response.text).message).toContain('Margot Robbie'));
+   }); 
+});
+
+describe('/login tests get',  ()=> {
+    test('/login endpoint status code and response 404', ()=>{
+        return request(webapp).get('/login/')
+        .send({player:'', points:3}).expect(404)
+        .then((response)=> expect(JSON.parse(response.text).error).toBe('username not provided'));
+    });
+
+    test('status code 200 and response', () =>{
+    
+       return request(webapp).get('/login/')
+       .send({player:'alex', points:5})
+       .expect(200) // test the response status code
+        // process the response
+       .then((response)=> expect(JSON.parse(response.text).message).toContain('6'));
+   }); 
+});
+
+
+describe('/delete endpoint tests',  ()=> {
+     test('status code 200 and response', () =>{
+        request(webapp).post('/login/')
+        .send(playerToDelete);
+        return request(webapp).delete('/delete/')
+        .expect(200) // test the response status code
+         // process the response
+        .then((response)=> expect(true));
+    }); 
+});
+

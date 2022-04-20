@@ -33,7 +33,7 @@ webapp.post('/login', async (req, resp) => {
   }
   console.log(req.body);
   try {
-    const result = await lib.addPlayer(db, { name: req.body.player, points: 3 });
+    const result = await lib.addPlayer(db, { name: req.body.player, points: req.body.points });
     // send the response
     resp.status(201).json({ message: `Player with id ${JSON.stringify(result.insertedId)} added` });
     console.log('player inserted');
@@ -49,6 +49,43 @@ webapp.get('/quiz', async (req, resp) => {
     // send the response
     resp.status(200).json({ message: JSON.stringify(result) });
     console.log('questions fetched');
+  } catch (err) {
+    resp.status(500).json({ error: 'try again later' });
+  }
+});
+
+webapp.get('/login', async (req, resp) => {
+  if (!req.body.player || req.body.player.length === 0) {
+    resp.status(404).json({ error: 'username not provided' });
+    return;
+  }
+  try {
+    console.log(req.body.player);
+    const result = await lib.getPlayer(db, 'alex');
+    console.log(result);
+    resp.status(200).json({ message: JSON.stringify(result) });
+    console.log('player fetched');
+  } catch (err) {
+    resp.status(500).json({ error: 'try again later' });
+  }
+});
+
+webapp.get('/leaders', async (req, resp) => {
+  try {
+    const result = await lib.getLeaders(db, req.body.n);
+    console.log(result);
+    resp.status(200).json({ message: JSON.stringify(result) });
+    console.log('leaders fetched');
+  } catch (err) {
+    resp.status(500).json({ error: 'try again later' });
+  }
+});
+
+webapp.delete('/delete', async (req, resp) => {
+  try {
+    console.log(req.body.player);
+    await lib.deletePlayer(db, req.body.player);
+    resp.status(200).json({ message: JSON.stringify('player deleted') });
   } catch (err) {
     resp.status(500).json({ error: 'try again later' });
   }
