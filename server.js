@@ -7,6 +7,8 @@ const webapp = express();
 // import database functions
 const lib = require('./dbOperations');
 
+const url = 'mongodb+srv://cis350HW5:cis350HW5@cluster0.b0nwj.mongodb.net/Test_Data?retryWrites=true&w=majority';
+
 let db;
 
 webapp.use(express.json());
@@ -59,10 +61,10 @@ webapp.use((_req, res) => {
 
 // Start server
 const port = process.env.PORT || 5005;
-webapp.listen(port, () => {
+webapp.listen(port, async () => {
   try {
-    // db = await lib.connect(url);
-    // console.log(`Express server running on port:${port}`);
+    db = await lib.connect(url);
+    console.log(`Express server running on port:${port}`);
   } catch (err) {
     throw new Error('cannot start server');
   }
