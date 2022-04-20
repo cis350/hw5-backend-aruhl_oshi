@@ -93,9 +93,24 @@ async function getLeaders(db, n) {
 }
 
 // update player score
+// delete player
+async function updateScore(db, name, score) {
+  try {
+    // retrieve all the players in the collection and convert the cursor
+    // to an array
+    const user = await getPlayer(db, name);
+    if (user.points >= score) {
+      return;
+    }
+    await db.collection('Players').updateOne({ player: name }, { $set: { points: score } });
+  } catch (err) {
+    console.error(err);
+    throw new Error('could not delete player');
+  }
+}
 
 module.exports = {
-  connect, addPlayer, getPlayers, getPlayer, getQuestions, deletePlayer, getLeaders,
+  connect, addPlayer, getPlayers, getPlayer, getQuestions, deletePlayer, getLeaders, updateScore,
 };
 
 connect('mongodb+srv://cis350HW5:cis350HW5@cluster0.b0nwj.mongodb.net/Test_Data?retryWrites=true&w=majority');

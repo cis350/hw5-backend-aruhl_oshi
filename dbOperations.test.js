@@ -27,6 +27,10 @@ const playerToDelete = {
     points: 0,
    };
 
+   const playerToUpdate = {
+    player: 'Update',
+    points: 2
+   };
 
 
 test('addPlayer inserts a new player', async () =>{
@@ -35,6 +39,7 @@ test('addPlayer inserts a new player', async () =>{
     // find testplayer in the DB
     const newPlayer = await db.collection('Players').findOne({player: 'testuser'});
     //test that newPlayer is testuser
+    dbModule.deletePlayer(db, 'testuser');
     expect(newPlayer.player).toEqual('testuser');
 });
 
@@ -63,10 +68,23 @@ test('deletePlayer deletes the correct player', async () =>{
     expect(receivedUser).toEqual(userDB);
 
     await dbModule.deletePlayer(db, 'Delete');
-    
+
     const removed = await db.collection('Players').findOne({ player: 'Delete' });
     
     expect(removed).toBeNull();
+});
+
+test('updatePlayer updates the correct player', async () =>{
+    await dbModule.addPlayer(db, playerToUpdate);
+    const receivedUser = await dbModule.getPlayer(db, 'Update');
+    expect(receivedUser.points).toEqual(playerToUpdate.points);
+    
+    await dbModule.updateScore(db, 'Update', 10);
+    const userDB = await db.collection('Players').findOne({ player: 'Update' });
+    console.log(userDB);
+    expect(userDB.points).toEqual(10);
+
+    await dbModule.deletePlayer(db, 'Update');
 });
 
 test('getLeaders returns the top n leaders', async () =>{
