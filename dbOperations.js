@@ -46,8 +46,6 @@ async function getPlayers(db) {
 // 4. get all players
 async function getPlayer(db, name) {
   try {
-    // retrieve all the players in the collection and convert the cursor
-    // to an array
     const results = await db.collection('Players').findOne({ player: name });
     return results;
   } catch (err) {
@@ -59,9 +57,8 @@ async function getPlayer(db, name) {
 // Get questions
 async function getQuestions(db) {
   try {
-    // retrieve all the players in the collection and convert the cursor
-    // to an array
     const results = await db.collection('Questions').find({}).toArray();
+    // console.log(results);
     return results;
   } catch (err) {
     console.error(err);
@@ -74,8 +71,7 @@ async function deletePlayer(db, name) {
   try {
     // retrieve all the players in the collection and convert the cursor
     // to an array
-    const results = await db.collection('Player').findOneAndDelete({ player: { name } });
-    return results;
+    await db.collection('Players').deleteMany({ player: name });
   } catch (err) {
     console.error(err);
     throw new Error('could not delete player');
@@ -99,9 +95,24 @@ async function getLeaders(db, n) {
 }
 
 // update player score
+// delete player
+async function updateScore(db, name, score) {
+  try {
+    // retrieve all the players in the collection and convert the cursor
+    // to an array
+    const user = await getPlayer(db, name);
+    if (user.points >= score) {
+      return;
+    }
+    await db.collection('Players').updateOne({ player: name }, { $set: { points: score } });
+  } catch (err) {
+    console.error(err);
+    throw new Error('could not delete player');
+  }
+}
 
 module.exports = {
-  connect, addPlayer, getPlayers, getPlayer, getQuestions, deletePlayer, getLeaders,
+  connect, addPlayer, getPlayers, getPlayer, getQuestions, deletePlayer, getLeaders, updateScore,
 };
 
 connect('mongodb+srv://cis350HW5:cis350HW5@cluster0.b0nwj.mongodb.net/Test_Data?retryWrites=true&w=majority');
