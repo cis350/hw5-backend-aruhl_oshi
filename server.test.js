@@ -39,3 +39,12 @@ describe('/login endpoint tests',  ()=> {
         .then((response)=> expect(JSON.parse(response.text).message).toContain('Player with id'));
     }); 
 });
+
+describe('/quiz endpoint tests',  ()=> {
+     test('status code 200 and response', () =>{
+        return request(webapp).get('/quiz/')
+        .expect(200) // test the response status code
+         // process the response
+        .then((response)=> expect(JSON.parse(response.text).message).toContain('Margot Robbie'));
+    }); 
+});
