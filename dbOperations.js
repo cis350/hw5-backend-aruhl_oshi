@@ -46,8 +46,6 @@ async function getPlayers(db) {
 // 4. get all players
 async function getPlayer(db, name) {
   try {
-    // retrieve all the players in the collection and convert the cursor
-    // to an array
     const results = await db.collection('Players').findOne({ player: name });
     return results;
   } catch (err) {
@@ -59,9 +57,8 @@ async function getPlayer(db, name) {
 // Get questions
 async function getQuestions(db) {
   try {
-    // retrieve all the players in the collection and convert the cursor
-    // to an array
     const results = await db.collection('Questions').find({}).toArray();
+    // console.log(results);
     return results;
   } catch (err) {
     console.error(err);
@@ -74,8 +71,7 @@ async function deletePlayer(db, name) {
   try {
     // retrieve all the players in the collection and convert the cursor
     // to an array
-    const results = await db.collection('Player').findOneAndDelete({ player: { name } });
-    return results;
+    await db.collection('Players').deleteMany({ player: name });
   } catch (err) {
     console.error(err);
     throw new Error('could not delete player');
