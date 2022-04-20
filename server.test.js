@@ -27,6 +27,11 @@ const playerToDelete = {
     points: 4,
 };
 
+const playerToUpdate = {
+    player: 'Update2',
+    points: 2,
+};
+
 
 describe('/login endpoint tests',  ()=> {
     test('/login endpoint status code and response 404', ()=>{
@@ -46,13 +51,31 @@ describe('/login endpoint tests',  ()=> {
     }); 
 });
 
-describe('/leaders endpoint tests',  ()=> {
+describe('/leaders get endpoint tests',  ()=> {
      test('status code 200 and response', () =>{
         return request(webapp).get('/leaders/')
+        .send({n: 6})
         .expect(200) // test the response status code
          // process the response
-        .then((response)=> expect(JSON.parse(response.text).message).toContain('oliver'));
+        .then((response)=> expect(JSON.parse(response.text).message).toContain('alex'));
     }); 
+});
+
+describe('/leaders put endpoint tests',  ()=> {
+    test('status code 201 and response', () =>{
+        return request(webapp).post('/login/')
+        .send(playerToUpdate)
+        .expect(201) // test the response status code
+         // process the response
+        .then((response)=> expect(JSON.parse(response.text).message).toContain('Player with id'));
+    }); 
+    test('status code 200 and response', () =>{
+        return request(webapp).put('/leaders/')
+        .send({player: 'Update2', points: 10})
+        .expect(200) // test the response status code
+        // process the response
+        .then((response)=> expect(JSON.parse(response.text).message).toContain('10'));
+   }); 
 });
 
 describe('/quiz endpoint tests',  ()=> {
@@ -69,7 +92,7 @@ describe('/delete endpoint tests',  ()=> {
      test('status code 200 and response', () =>{
         request(webapp).post('/login/')
         .send(playerToDelete);
-        return request(webapp).delete('/delete/')
+        return request(webapp).delete('/delete/delete2')
         .expect(200) // test the response status code
          // process the response
         .then((response)=> expect(true));

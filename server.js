@@ -32,7 +32,7 @@ webapp.post('/login', async (req, resp) => {
     return;
   }
   try {
-    const result = await lib.addPlayer(db, { name: req.body.player, points: req.body.points });
+    const result = await lib.addPlayer(db, { player: req.body.player, points: req.body.points });
     // send the response
     resp.status(201).json({ message: `Player with id ${JSON.stringify(result.insertedId)} added` });
     console.log('player inserted');
@@ -66,7 +66,7 @@ webapp.get('/leaders', async (req, resp) => {
 webapp.delete('/delete/:player', async (req, resp) => {
   try {
     console.log(req.params.player);
-    //await lib.deletePlayer(db, req.body.player);
+    await lib.deletePlayer(db, req.params.player);
     resp.status(200).json({ message: JSON.stringify('player deleted') });
   } catch (err) {
     resp.status(500).json({ error: 'try again later' });
@@ -76,8 +76,8 @@ webapp.delete('/delete/:player', async (req, resp) => {
 // Update Score
 webapp.put('/leaders', async (req, resp) => {
   try {
-    await lib.updateScore(db, req.body.player, req.body.score);
-    resp.status(200).json({ message: JSON.stringify('updated score') });
+    const result = await lib.updateScore(db, req.body.player, req.body.points);
+    resp.status(200).json({ message: JSON.stringify(result) });
   } catch (err) {
     resp.status(500).json({ error: 'try again later' });
   }
