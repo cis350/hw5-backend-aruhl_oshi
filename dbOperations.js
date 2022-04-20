@@ -48,7 +48,7 @@ async function getPlayer(db, name) {
   try {
     // retrieve all the players in the collection and convert the cursor
     // to an array
-    const results = await db.collection('Players').findOne({ player: { name } });
+    const results = await db.collection('Players').findOne({ player: name });
     return results;
   } catch (err) {
     console.error(err);
@@ -96,19 +96,7 @@ async function getLeaders(db, n) {
   }
 }
 
-// update palyer score
-async function updatePlayer(db, n) {
-  try {
-    // retrieve all the players in the collection and convert the cursor
-    // to an array
-    const results = await db.collection('Players').find({}).toArray();
-    console.log(results);
-    return results;
-  } catch (err) {
-    console.error(err);
-    throw new Error('could not delete player');
-  }
-}
+// update player score
 
 module.exports = {
   connect, addPlayer, getPlayers, getPlayer, getQuestions, deletePlayer, getLeaders,
