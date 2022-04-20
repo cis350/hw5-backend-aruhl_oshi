@@ -82,17 +82,19 @@ async function deletePlayer(db, name) {
   }
 }
 
-// delete player
+// get n leaders
 async function getLeaders(db, n) {
   try {
     // retrieve all the players in the collection and convert the cursor
     // to an array
-    const results = await db.collection('Players').find({}).toArray();
-    console.log(results);
-    return results;
+    const arr = await db.collection('Players').find({}).toArray();
+    arr.sort(function(a, b){return b.points-a.points});
+    console.log(arr);
+    const nleaders = arr.slice(0, n)
+    return nleaders;
   } catch (err) {
     console.error(err);
-    throw new Error('could not delete player');
+    throw new Error('could not find leaders');
   }
 }
 

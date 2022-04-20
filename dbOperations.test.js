@@ -61,3 +61,21 @@ test('getLeaders returns the top n leaders', async () =>{
     //test that users matches  usersDB
     expect(receivedQuestions).toEqual(questionsDB);
 });
+
+test('getLeaders retrieves all the players a new player', async () =>{
+    // connect to the db
+    db = await dbModule.connect(url);
+    //call addPlayers
+    await dbModule.addPlayer(db, {player: 'player1', points: 10});
+    await dbModule.addPlayer(db, {player: 'player2', points: 41});
+    await dbModule.addPlayer(db, {player: 'player3', points: 12});
+
+    // call getPlayers
+    const users = await dbModule.getLeaders(db, 3);
+    // get all the playes in the DB
+    const arr = await db.collection('Players').find({}).toArray();
+    arr.sort(function(a, b){return b.points-a.points});
+    const nleaders = arr.slice(0, 3)
+    //test that users matches  usersDB
+    expect(users).toEqual(nleaders);
+});
