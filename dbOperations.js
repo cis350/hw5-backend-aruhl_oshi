@@ -17,7 +17,7 @@ const connect = async (url) => {
     throw new Error('could not connect to db');
   }
 };
-
+/*
 // 3. add a player to the DB
 const addPlayer = async (db, newPlayer) => {
   try {
@@ -28,13 +28,13 @@ const addPlayer = async (db, newPlayer) => {
     console.error(err);
     throw new Error('could not add a player');
   }
-};
+}; */
 
 // 4. get all players
 async function getPlayer(db, name) {
   try {
-    const results = await db.collection('Players').findOne({ player: name });
-    return results;
+    const result = await db.collection('Players').findOne({ player: name });
+    return result;
   } catch (err) {
     console.error(err);
     throw new Error('could not find player');
@@ -52,6 +52,27 @@ async function getQuestions(db) {
     throw new Error('could not retrieve questions');
   }
 }
+
+const addPlayer = async (db, newPlayer) => {
+  try {
+    let result;
+    const existingPlayer = await getPlayer(db, newPlayer.player);
+    console.log(existingPlayer);
+    if (existingPlayer === null) {
+      console.log('creating new player');
+      try {
+        result = await db.collection('Players').insertOne(newPlayer);
+        console.log(`Created player with id: ${result.insertedId}`);
+        return result;
+      } catch (err) {
+        throw new Error('could not add a player');
+      }
+    }
+    return existingPlayer;
+  } catch (e) {
+    throw new Error('could not add a player');
+  }
+};
 
 // delete player
 async function deletePlayer(db, name) {
@@ -72,7 +93,7 @@ async function getLeaders(db, n) {
     // to an array
     const arr = await db.collection('Players').find({}).toArray();
     arr.sort((a, b) => b.points - a.points);
-    console.log(arr);
+    /// console.log(arr);
     const nleaders = arr.slice(0, n);
     return nleaders;
   } catch (err) {
@@ -89,9 +110,11 @@ async function updateScore(db, name, score) {
     // to an array
     const user = await getPlayer(db, name);
     if (user.points >= score) {
-      return;
+      return user;
     }
     await db.collection('Players').updateOne({ player: name }, { $set: { points: score } });
+    const result = await getPlayer(db, name);
+    return result;
   } catch (err) {
     console.error(err);
     throw new Error('could not delete player');
