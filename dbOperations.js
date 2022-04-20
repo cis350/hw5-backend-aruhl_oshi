@@ -58,7 +58,7 @@ async function deletePlayer(db, name) {
   try {
     // retrieve all the players in the collection and convert the cursor
     // to an array
-    await db.collection('Players').deleteMany({ player: name });
+    await db.collection('Players').deleteMany({ });
   } catch (err) {
     console.error(err);
     throw new Error('could not delete player');

@@ -54,11 +54,9 @@ test('getQuestions returns the correct questions', async () =>{
 });
 
 test('getPlayer returns the correct player', async () =>{
-    await dbModule.addPlayer(db, {name: 'oliver', points: 3});
-    const receivedUser = await dbModule.getPlayer(db, 'oliver');
-    console.log('db operations get player test');
-    console.log(receivedUser);
-    const userDB = await db.collection('Players').findOne({ player: 'oliver' });
+    await dbModule.addPlayer(db, {name: 'Jimmy', points: 3});
+    const receivedUser = await dbModule.getPlayer(db, 'Jimmy');
+    const userDB = await db.collection('Players').findOne({ player: 'Jimmy' });
     //test that users matches  usersDB
     expect(receivedUser).toEqual(userDB);
 });

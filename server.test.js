@@ -64,23 +64,7 @@ describe('/quiz endpoint tests',  ()=> {
    }); 
 });
 
-describe('/login tests get',  ()=> {
-    test('/login endpoint status code and response 404', ()=>{
-        return request(webapp).get('/login/')
-        .send({player:'', points:3}).expect(404)
-        .then((response)=> expect(JSON.parse(response.text).error).toBe('username not provided'));
-    });
 
-    test('status code 200 and response', () =>{
-       return request(webapp).get('/login/')
-       .send({player:'alex', points:5})
-       .expect(200) // test the response status code
-        // process the response
-       .then((response)=> expect(JSON.parse(response.text).message).toContain('alex'));
-   }); 
-});
-
-/*
 describe('/delete endpoint tests',  ()=> {
      test('status code 200 and response', () =>{
         request(webapp).post('/login/')
@@ -91,7 +75,7 @@ describe('/delete endpoint tests',  ()=> {
         .then((response)=> expect(true));
     }); 
 });
-*/
+
 
 
 

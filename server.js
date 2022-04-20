@@ -53,20 +53,6 @@ webapp.get('/quiz', async (req, resp) => {
   }
 });
 
-webapp.get('/login', async (req, resp) => {
-  if (!req.body.player || req.body.player.length === 0) {
-    resp.status(404).json({ error: 'username not provided' });
-    return;
-  }
-  try {
-    const result = await lib.getPlayer(db, req.body.player);
-    resp.status(200).json({ message: JSON.stringify(result) });
-    console.log('player fetched');
-  } catch (err) {
-    resp.status(500).json({ error: 'try again later' });
-  }
-});
-
 webapp.get('/leaders', async (req, resp) => {
   try {
     const result = await lib.getLeaders(db, req.body.n);
@@ -77,9 +63,9 @@ webapp.get('/leaders', async (req, resp) => {
   }
 });
 
-webapp.delete('/delete', async (req, resp) => {
+webapp.delete('/delete/:player', async (req, resp) => {
   try {
-    console.log(req.body.player);
+    console.log(req.params.player);
     //await lib.deletePlayer(db, req.body.player);
     resp.status(200).json({ message: JSON.stringify('player deleted') });
   } catch (err) {
