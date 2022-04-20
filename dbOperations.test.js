@@ -117,3 +117,21 @@ test('getLeaders retrieves all the players a new player', async () =>{
     await dbModule.deletePlayer(db, 'player2');
     await dbModule.deletePlayer(db, 'player3');
 });
+
+test('addPlayer throws an exception', async () =>{
+
+    // connect to the db
+    db = await dbModule.connect(url);
+
+    // incorrect document
+    const player1 = 'testuser';
+   try{
+      
+   await dbModule.addPlayer(db, player1);
+
+   }
+   catch(err){
+       // test error message
+       expect(err.message).toBe('could not add a player');
+   }  
+});
