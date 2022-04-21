@@ -53,8 +53,7 @@ describe('/login endpoint tests',  ()=> {
 
 describe('/leaders get endpoint tests',  ()=> {
      test('status code 200 and response', () =>{
-        return request(webapp).get('/leaders/')
-        .send({n: 6})
+        return request(webapp).get('/leaders/5')
         .expect(200) // test the response status code
          // process the response
         .then((response)=> expect(JSON.parse(response.text).message).toContain('alex'));
@@ -76,6 +75,12 @@ describe('/leaders put endpoint tests',  ()=> {
         // process the response
         .then((response)=> expect(JSON.parse(response.text).message).toContain('10'));
    }); 
+   test('status code 200 and response', () =>{
+    return request(webapp).delete('/delete/Update2')
+        .expect(200) // test the response status code
+         // process the response
+        .then((response)=> expect(true));
+}); 
 });
 
 describe('/quiz endpoint tests',  ()=> {

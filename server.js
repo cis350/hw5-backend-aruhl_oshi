@@ -53,9 +53,9 @@ webapp.get('/quiz', async (req, resp) => {
   }
 });
 
-webapp.get('/leaders', async (req, resp) => {
+webapp.get('/leaders/:n', async (req, resp) => {
   try {
-    const result = await lib.getLeaders(db, req.body.n);
+    const result = await lib.getLeaders(db, req.params.n);
     resp.status(200).json({ message: JSON.stringify(result) });
     console.log('leaders fetched');
   } catch (err) {
